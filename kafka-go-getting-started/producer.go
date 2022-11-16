@@ -2,10 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/confluentinc/confluent-kafka-go/kafka"
 	"math/rand"
 	"os"
-
-	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
 func main() {
