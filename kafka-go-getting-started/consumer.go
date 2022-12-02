@@ -7,7 +7,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/confluentinc/confluent-kafka-go/kafka"
+	"gopkg.in/confluentinc/confluent-kafka-go.v1/kafka"
 )
 
 func main() {
@@ -23,7 +23,8 @@ func main() {
 	conf["group.id"] = "kafka-go-getting-started"
 	conf["auto.offset.reset"] = "earliest"
 
-	c, err := kafka.NewConsumer(&conf)
+	c, err := kafka.NewProducer(&kafka.ConfigMap{
+		"bootstrap.servers": "localhost:9092"})
 
 	if err != nil {
 		fmt.Printf("Failed to create consumer: %s", err)
