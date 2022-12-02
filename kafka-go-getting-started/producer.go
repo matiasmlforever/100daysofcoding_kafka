@@ -2,23 +2,16 @@ package main
 
 import (
 	"fmt"
-	"github.com/confluentinc/confluent-kafka-go/kafka"
+	"gopkg.in/confluentinc/confluent-kafka-go.v1/kafka"
 	"math/rand"
 	"os"
 )
 
 func main() {
 
-	if len(os.Args) != 2 {
-		fmt.Fprintf(os.Stderr, "Usage: %s <config-file-path>\n",
-			os.Args[0])
-		os.Exit(1)
-	}
-	configFile := os.Args[1]
-	conf := ReadConfig(configFile)
-
-	topic := "purchases"
-	p, err := kafka.NewProducer(&conf)
+	topic := "quick-start"
+	p, err := kafka.NewProducer(&kafka.ConfigMap{
+		"bootstrap.servers": "localhost:9092"})
 
 	if err != nil {
 		fmt.Printf("Failed to create producer: %s", err)
